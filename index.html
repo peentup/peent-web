@@ -19,7 +19,7 @@
 </head>
 <body class="bg-gray-50 text-gray-900">
 
-    <nav class="p-6 flex justify-between items-center bg-white border-b border-gray-100 sticky top-0 z-40">
+    <nav class="p-6 flex justify-between items-center bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
         <h1 class="text-2xl font-bold tracking-tighter text-black uppercase">Peent.</h1>
         <div class="space-x-6 text-sm font-medium">
             <a href="#gallery" class="hover:text-gray-500 text-black transition-colors">Gallery</a>
@@ -100,35 +100,39 @@
         
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-                <img src="https://i.imgur.com/040Uq9E.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 1">
+                <img src="https://i.imgur.com/040Uq9E.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 1" onclick="openLightbox(this.src)">
             </div>
             <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-                <img src="https://i.imgur.com/ANonCFm.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 2">
+                <img src="https://i.imgur.com/ANonCFm.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 2" onclick="openLightbox(this.src)">
             </div>
             <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-                <img src="https://i.imgur.com/92mTTkL.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 3">
+                <img src="https://i.imgur.com/92mTTkL.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 3" onclick="openLightbox(this.src)">
             </div>
             <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-                <img src="https://i.imgur.com/SC3sZjC.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 4">
-            </div>
-            
-            <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-                <img src="https://i.imgur.com/fBYRB98.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 5">
+                <img src="https://i.imgur.com/SC3sZjC.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 4" onclick="openLightbox(this.src)">
             </div>
             <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-                <img src="https://i.imgur.com/o2xN0b0.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 6">
+                <img src="https://i.imgur.com/fBYRB98.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 5" onclick="openLightbox(this.src)">
             </div>
             <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-                <img src="https://i.imgur.com/2QmMOWH.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 7">
+                <img src="https://i.imgur.com/o2xN0b0.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 6" onclick="openLightbox(this.src)">
             </div>
             <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-                <img src="https://i.imgur.com/pzzyOMu.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 8">
+                <img src="https://i.imgur.com/2QmMOWH.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 7" onclick="openLightbox(this.src)">
             </div>
             <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-                <img src="https://i.imgur.com/gNokPuR.png" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 9">
+                <img src="https://i.imgur.com/pzzyOMu.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 8" onclick="openLightbox(this.src)">
+            </div>
+            <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://i.imgur.com/gNokPuR.png" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 9" onclick="openLightbox(this.src)">
             </div>
         </div>
     </section>
+
+    <div id="lightbox" class="fixed inset-0 z-[60] hidden bg-black/90 flex items-center justify-center p-4 transition-opacity duration-300" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white text-5xl hover:text-gray-300 transition-colors" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-img" src="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl" onclick="event.stopPropagation()">
+    </div>
 
     <a href="https://wa.me/6285810895334?text=Halo%20Peent,%20saya%20tertarik%20tanya%20tentang%20Cache%20Sling%20Bag" 
        target="_blank" 
@@ -144,6 +148,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        // Script untuk Slider Utama
         var swiper = new Swiper(".mySwiper", {
             loop: true,
             pagination: {
@@ -155,6 +160,16 @@
                 prevEl: ".swiper-button-prev",
             },
         });
+
+        // Script untuk Lightbox (Preview Foto)
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
     </script>
 
 </body>
