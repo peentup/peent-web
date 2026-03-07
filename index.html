@@ -31,11 +31,7 @@
         <div class="w-full md:w-1/2 sticky top-24">
             <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden shadow-sm relative">
                 <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="https://i.imgur.com/040Uq9E.jpg" class="w-full h-full object-cover"></div>
-                        <div class="swiper-slide"><img src="https://i.imgur.com/ANonCFm.jpeg" class="w-full h-full object-cover"></div>
-                        <div class="swiper-slide"><img src="https://i.imgur.com/92mTTkL.jpeg" class="w-full h-full object-cover"></div>
-                        <div class="swiper-slide"><img src="https://i.imgur.com/SC3sZjC.jpeg" class="w-full h-full object-cover"></div>
+                    <div class="swiper-wrapper" id="slider-container">
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
@@ -86,7 +82,7 @@
         </div>
         
         <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            </div>
+        </div>
     </section>
 
     <div id="lightbox" class="fixed inset-0 z-[60] hidden bg-black/95 flex items-center justify-center p-4 transition-opacity duration-300">
@@ -106,10 +102,41 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        var swiper = new Swiper(".mySwiper", { loop: true, pagination: { el: ".swiper-pagination", clickable: true }, navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } });
+        // ==========================================================
+        // 1. DATA SLIDER PRODUK UTAMA (Gambar yang bisa di-geser di atas)
+        // ==========================================================
+        const sliderImages = [
+            "https://i.imgur.com/040Uq9E.jpg",
+            "https://i.imgur.com/ANonCFm.jpeg",
+            "https://i.imgur.com/92mTTkL.jpeg",
+            "https://i.imgur.com/SC3sZjC.jpeg",
+            "https://i.imgur.com/wPJFWIf.jpeg",
+            "https://i.imgur.com/dq4kEB0.jpeg",
+            "https://i.imgur.com/udJ4O47.jpeg",
+            "https://i.imgur.com/e0rws9e.jpeg",
+            "https://i.imgur.com/KpL5XXT.jpeg",
+            "https://i.imgur.com/o8mmH8l.jpeg"
+        ];
+
+        // Generate Slider Otomatis
+        const sliderContainer = document.getElementById('slider-container');
+        sliderImages.forEach(src => {
+            sliderContainer.innerHTML += `
+                <div class="swiper-slide">
+                    <img src="${src}" class="w-full h-full object-cover">
+                </div>
+            `;
+        });
+
+        // Inisialisasi Swiper (Harus dipanggil SETELAH gambar digenerate)
+        var swiper = new Swiper(".mySwiper", { 
+            loop: true, 
+            pagination: { el: ".swiper-pagination", clickable: true }, 
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } 
+        });
 
         // ==========================================================
-        // CARA TAMBAH FOTO BARU: CUKUP MASUKKAN LINKNYA DI BAWAH SINI
+        // 2. DATA FOTO GALLERY (Di bagian bawah)
         // ==========================================================
         const galleryImages = [
             "https://i.imgur.com/040Uq9E.jpg",
@@ -120,12 +147,11 @@
             "https://i.imgur.com/o2xN0b0.jpeg",
             "https://i.imgur.com/2QmMOWH.jpeg",
             "https://i.imgur.com/pzzyOMu.jpeg",
-            "https://i.imgur.com/gNokPuR.png" ,
+            "https://i.imgur.com/gNokPuR.png",
             "https://i.imgur.com/wPJFWIf.jpeg"
-            // Tambahkan koma (,) dan link baru di sini jika ada foto lagi
         ];
 
-        // Script untuk membuat HTML Gallery Otomatis
+        // Generate Gallery Otomatis
         const galleryContainer = document.getElementById('gallery-container');
         galleryImages.forEach((src, index) => {
             galleryContainer.innerHTML += `
@@ -135,7 +161,7 @@
             `;
         });
 
-        // Script Lightbox
+        // Script Lightbox Gallery
         let currentIndex = 0;
         function openLightbox(index) {
             currentIndex = index;
