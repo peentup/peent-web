@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peent. - Peent Cache Sling Bag</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
+        .swiper { width: 100%; height: 100%; border-radius: 1rem; }
+        .swiper-button-next, .swiper-button-prev { color: #000 !important; transform: scale(0.7); }
+        .swiper-pagination-bullet-active { background: #000 !important; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -15,7 +19,7 @@
     <nav class="p-6 flex justify-between items-center bg-white border-b border-gray-100">
         <h1 class="text-2xl font-bold tracking-tighter text-black uppercase">Peent.</h1>
         <div class="space-x-6 text-sm font-medium">
-            <a href="#" class="hover:text-gray-500">Shop</a>
+            <a href="#" class="hover:text-gray-500 text-black">Shop</a>
             <a href="#" class="hover:text-gray-500">About</a>
         </div>
     </nav>
@@ -23,10 +27,25 @@
     <main class="max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center gap-12">
         
         <div class="w-full md:w-1/2">
-            <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden shadow-sm">
-                <img src="https://i.imgur.com/040Uq9E.jpeg" 
-                     alt="Peent Cache Sling Bag" 
-                     class="w-full h-full object-cover">
+            <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden shadow-sm relative">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://i.imgur.com/040Uq9E.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div class="swiper-slide text-center flex items-center justify-center bg-gray-100">
+                             <img src="https://i.imgur.com/040Uq9E.jpg" class="w-full h-full object-cover opacity-50">
+                             <p class="absolute text-xs text-gray-400">Ganti dengan URL Foto 2</p>
+                        </div>
+                        <div class="swiper-slide text-center flex items-center justify-center bg-gray-100">
+                             <img src="https://i.imgur.com/040Uq9E.jpg" class="w-full h-full object-cover opacity-50">
+                             <p class="absolute text-xs text-gray-400">Ganti dengan URL Foto 3</p>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
             </div>
         </div>
 
@@ -65,6 +84,21 @@
     <footer class="py-12 border-t border-gray-100 text-center">
         <p class="text-xs text-gray-400">&copy; 2026 Peent. All rights reserved.</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
 
 </body>
 </html>
