@@ -8,28 +8,27 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; }
         .swiper { width: 100%; height: 100%; border-radius: 1rem; }
         .swiper-button-next, .swiper-button-prev { color: #000 !important; transform: scale(0.7); }
         .swiper-pagination-bullet-active { background: #000 !important; }
-        /* Animasi halus untuk tombol WA */
         .wa-float { transition: all 0.3s ease; }
         .wa-float:hover { transform: scale(1.1); filter: brightness(1.1); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
 
-    <nav class="p-6 flex justify-between items-center bg-white border-b border-gray-100">
+    <nav class="p-6 flex justify-between items-center bg-white border-b border-gray-100 sticky top-0 z-40">
         <h1 class="text-2xl font-bold tracking-tighter text-black uppercase">Peent.</h1>
         <div class="space-x-6 text-sm font-medium">
-            <a href="#" class="hover:text-gray-500 text-black">Shop</a>
-            <a href="#" class="hover:text-gray-500">About</a>
+            <a href="#gallery" class="hover:text-gray-500 text-black transition-colors">Gallery</a>
         </div>
     </nav>
 
     <main class="max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-start gap-12">
         
-        <div class="w-full md:w-1/2 sticky top-6">
+        <div class="w-full md:w-1/2 sticky top-24">
             <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden shadow-sm relative">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
@@ -92,6 +91,44 @@
             </div>
         </div>
     </main>
+
+    <section id="gallery" class="max-w-6xl mx-auto px-6 py-16 border-t border-gray-200">
+        <div class="text-center mb-10">
+            <h3 class="text-3xl md:text-4xl font-bold tracking-tight">Gallery</h3>
+            <p class="text-gray-500 mt-3">Lihat lebih detail produk Peent Cache Sling Bag</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://i.imgur.com/040Uq9E.jpg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 1">
+            </div>
+            <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://i.imgur.com/ANonCFm.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 2">
+            </div>
+            <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://i.imgur.com/92mTTkL.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 3">
+            </div>
+            <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://i.imgur.com/SC3sZjC.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 4">
+            </div>
+            
+            <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://i.imgur.com/fBYRB98.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 5">
+            </div>
+            <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://i.imgur.com/o2xN0b0.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 6">
+            </div>
+            <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://i.imgur.com/2QmMOWH.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 7">
+            </div>
+            <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://i.imgur.com/pzzyOMu.jpeg" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 8">
+            </div>
+            <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://i.imgur.com/gNokPuR.png" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery 9">
+            </div>
+        </div>
+    </section>
 
     <a href="https://wa.me/6285810895334?text=Halo%20Peent,%20saya%20tertarik%20tanya%20tentang%20Cache%20Sling%20Bag" 
        target="_blank" 
