@@ -12,6 +12,9 @@
         .swiper { width: 100%; height: 100%; border-radius: 1rem; }
         .swiper-button-next, .swiper-button-prev { color: #000 !important; transform: scale(0.7); }
         .swiper-pagination-bullet-active { background: #000 !important; }
+        /* Animasi halus untuk tombol WA */
+        .wa-float { transition: all 0.3s ease; }
+        .wa-float:hover { transform: scale(1.1); filter: brightness(1.1); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -81,6 +84,14 @@
             </div>
         </div>
     </main>
+
+    <a href="https://wa.me/6285810895334?text=Halo%20Peent,%20saya%20tertarik%20tanya%20tentang%20Cache%20Sling%20Bag" 
+       target="_blank" 
+       class="wa-float fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50 flex items-center justify-center">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.48s3.481 5.228 3.481 8.408c0 6.556-5.332 11.888-11.888 11.888-2.003 0-3.96-.503-5.69-1.448l-6.307 1.669zM6.49 19.394l.356.211c1.356.803 2.871 1.226 4.431 1.226 4.692 0 8.51-3.818 8.51-8.51 0-2.273-.884-4.41-2.489-6.015s-3.742-2.489-6.015-2.489c-4.692 0-8.51 3.818-8.51 8.51 0 1.691.494 3.336 1.428 4.773l.232.357-1.079 3.941 4.076-1.078z"/>
+        </svg>
+    </a>
 
     <footer class="py-12 border-t border-gray-100 text-center">
         <p class="text-xs text-gray-400">&copy; 2026 Peent. All rights reserved.</p>
