@@ -20,63 +20,22 @@
     <nav class="p-6 flex justify-between items-center bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
         <h1 class="text-2xl font-bold tracking-tighter text-black uppercase">Peent.</h1>
         <div class="space-x-6 text-sm font-medium">
-            <a href="#gallery" class="hover:text-gray-500 text-black">Gallery</a>
+            <a href="https://shopee.co.id/peent.up" target="_blank" class="hover:text-gray-500 text-black">Shopee</a>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-12">
-        <!-- Bagian Slider -->
-        <div class="w-full md:w-1/2 sticky top-24">
-            <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden relative">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper" id="slider-container"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-        </div>
+    <!-- Container Utama untuk menampung semua produk -->
+    <div id="app-container"></div>
 
-        <!-- Bagian Info Produk -->
-        <div class="w-full md:w-1/2 space-y-8">
-            <div class="space-y-2">
-                <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Product Detail</span>
-                <h2 class="text-4xl font-bold leading-tight"></h2>
-                <p class="text-2xl font-light text-gray-600"></p>
-            </div>
-
-            <div class="text-gray-600 leading-relaxed text-sm md:text-base space-y-4" id="deskripsi-container"></div>
-
-            <div class="pt-2">
-                <a href="#" target="_blank" class="inline-block w-full md:w-auto text-center bg-black text-white px-12 py-4 rounded-full font-semibold hover:bg-gray-800 transition-all shadow-lg active:scale-95">
-                    Beli Sekarang di Shopee
-                </a>
-            </div>
-
-            <div class="space-y-5 pt-8 border-t border-gray-200">
-                <div>
-                    <h4 class="text-xs font-bold uppercase text-gray-400 mb-1">Dimensions</h4>
-                    <p class="text-sm font-medium text-gray-900"></p>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold uppercase text-gray-400 mb-1">Materials</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed"></p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <section id="gallery" class="max-w-6xl mx-auto px-6 py-16 border-t border-gray-200">
-        <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
-    </section>
-
-    <!-- Lightbox -->
-    <div id="lightbox" class="fixed inset-0 z-[60] hidden bg-black/95 flex items-center justify-center p-4">
-        <button class="absolute top-4 right-6 text-white text-5xl z-[70]" onclick="closeLightbox()">&times;</button>
-        <button class="absolute left-4 text-white text-6xl z-[70]" onclick="changeImage(-1, event)">&#10094;</button>
+    <!-- Lightbox (Hanya satu untuk semua produk) -->
+    <div id="lightbox" class="fixed inset-0 z-[60] hidden bg-black/95 flex items-center justify-center p-4" onclick="closeLightbox()">
+        <button class="absolute top-4 right-6 text-white text-5xl">&times;</button>
         <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] object-contain rounded-lg">
-        <button class="absolute right-4 text-white text-6xl z-[70]" onclick="changeImage(1, event)">&#10095;</button>
     </div>
+
+    <footer class="py-12 border-t border-gray-100 text-center">
+        <p class="text-xs text-gray-400">&copy; 2026 Peent. All rights reserved.</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
@@ -88,7 +47,7 @@
                 dimensi: "36cm x 11cm x 30cm (Volume 11 L)",
                 bahan: "Cordura Nylon 1000D Glossy / Polyester WP Lining / Mesh fabric / YKK Zipper",
                 linkShopee: "https://shopee.co.id/peent.up",
-                gambarUtama: [
+                gambar: [
                     "https://i.imgur.com/040Uq9E.jpg",
                     "https://i.imgur.com/ANonCFm.jpeg",
                     "https://i.imgur.com/92mTTkL.jpeg",
@@ -98,11 +57,11 @@
             {
                 nama: "Peent Adjustable Stabilizer v.2 Strap",
                 harga: "Rp 76.000",
-                deskripsi: "One-side adjustable strap / Quick magnetic fastening (one-hand use) / Secure snap attachment to main strap / Compatible with most sling/crossbody bags. Designed to keep your carry clean, stable, and comfortable",
-                dimensi: "Adjustable length: 25 cm – 70 cm, Front strap length: 10 cm, Back, strap length: 57 cm, Strap width: 2 cm",
-                bahan: "Premium 2cm Nylon Webbing (structured & durable) / Magnetic Buckle / Acetal Hardware / Snap Button (reinforced)",
+                deskripsi: "One-side adjustable strap / Quick magnetic fastening (one-hand use) / Secure snap attachment to main strap / Compatible with most sling/crossbody bags.",
+                dimensi: "Adjustable length: 25 cm – 70 cm, Strap width: 2 cm",
+                bahan: "Premium 2cm Nylon Webbing / Magnetic Buckle / Acetal Hardware / Snap Button",
                 linkShopee: "https://shopee.co.id/Peent.-Adjustable-Stabilizer-v.2-Strap.-Magnetic-Buckle.-Aksesori-Tas-Selempang-Sidepack.-Camera.-Cycling.-i.1492305909.46709938687",
-                gambarUtama: [
+                gambar: [
                     "https://i.imgur.com/x0nx4D4.png",
                     "https://i.imgur.com/JMuD6SS.png",
                     "https://i.imgur.com/kViydWJ.png",
@@ -111,60 +70,66 @@
             }
         ];
 
-        // GANTI INDEKS DI SINI: 0 untuk Tas, 1 untuk Strap
-        const produkAktif = daftarProduk[1];
+        function renderProduk() {
+            const container = document.getElementById('app-container');
+            
+            container.innerHTML = daftarProduk.map((produk, idx) => `
+                <main class="max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-start gap-12 border-b border-gray-200">
+                    <div class="w-full md:w-1/2">
+                        <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden relative shadow-sm">
+                            <div class="swiper mySwiper-${idx}">
+                                <div class="swiper-wrapper">
+                                    ${produk.gambar.map(img => `<div class="swiper-slide"><img src="${img}" class="w-full h-full object-cover"></div>`).join('')}
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-4 gap-2 mt-4">
+                            ${produk.gambar.map(img => `
+                                <div class="aspect-square rounded-lg overflow-hidden bg-gray-100">
+                                    <img src="${img}" class="w-full h-full object-cover cursor-pointer hover:opacity-75" onclick="openLightbox('${img}')">
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
 
-        // Render Data ke HTML
-        document.querySelector('h2').innerText = produkAktif.nama;
-        document.querySelector('.text-2xl.font-light').innerText = produkAktif.harga;
-        document.querySelector('.pt-2 a').href = produkAktif.linkShopee;
-        document.getElementById('deskripsi-container').innerHTML = `<p>${produkAktif.deskripsi}</p>`;
-        
-        const detailSpecs = document.querySelectorAll('.space-y-5.pt-8 p');
-        detailSpecs[0].innerText = produkAktif.dimensi;
-        detailSpecs[1].innerText = produkAktif.bahan;
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <div class="space-y-2">
+                            <h2 class="text-4xl font-bold">${produk.nama}</h2>
+                            <p class="text-2xl font-light text-gray-600">${produk.harga}</p>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">${produk.deskripsi}</p>
+                        <a href="${produk.linkShopee}" target="_blank" class="inline-block w-full md:w-auto text-center bg-black text-white px-12 py-4 rounded-full font-semibold hover:bg-gray-800 transition-all shadow-md active:scale-95">Beli di Shopee</a>
+                        <div class="pt-6 border-t border-gray-200 space-y-4">
+                            <div><h4 class="text-xs font-bold uppercase text-gray-400">Dimensions</h4><p class="text-sm">${produk.dimensi}</p></div>
+                            <div><h4 class="text-xs font-bold uppercase text-gray-400">Materials</h4><p class="text-sm text-gray-600">${produk.bahan}</p></div>
+                        </div>
+                    </div>
+                </main>
+            `).join('');
 
-        // Render Slider
-        const sliderContainer = document.getElementById('slider-container');
-        produkAktif.gambarUtama.forEach(src => {
-            sliderContainer.innerHTML += `<div class="swiper-slide"><img src="${src}" class="w-full h-full object-cover"></div>`;
-        });
+            // Inisialisasi semua swiper
+            daftarProduk.forEach((_, idx) => {
+                new Swiper(`.mySwiper-${idx}`, {
+                    loop: true,
+                    pagination: { el: ".swiper-pagination", clickable: true },
+                    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
+                });
+            });
+        }
 
-        // Render Gallery
-        const galleryContainer = document.getElementById('gallery-container');
-        produkAktif.gambarUtama.forEach((src, index) => {
-            galleryContainer.innerHTML += `
-                <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-                    <img src="${src}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" onclick="openLightbox(${index})">
-                </div>`;
-        });
-
-        // Init Swiper
-        var swiper = new Swiper(".mySwiper", { 
-            loop: true, 
-            pagination: { el: ".swiper-pagination", clickable: true }, 
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } 
-        });
-
-        // Lightbox Logic
-        let currentIndex = 0;
-        const galleryImages = produkAktif.gambarUtama;
-
-        function openLightbox(index) {
-            currentIndex = index;
-            document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').classList.remove('hidden');
         }
 
-        function closeLightbox() { document.getElementById('lightbox').classList.add('hidden'); }
-
-        function changeImage(direction, event) {
-            if(event) event.stopPropagation();
-            currentIndex += direction;
-            if (currentIndex >= galleryImages.length) currentIndex = 0;
-            else if (currentIndex < 0) currentIndex = galleryImages.length - 1;
-            document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
         }
+
+        renderProduk();
     </script>
 </body>
 </html>
