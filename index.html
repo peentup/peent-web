@@ -1,87 +1,93 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peent. - Catalog</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; }
-        .product-card { transition: all 0.3s ease; }
-        .product-card:hover { transform: translateY(-5px); }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-900">
+const daftarProduk = [
+    {
+        nama: "Peent Cache Sling Bag",
+        harga: "Rp 285.000",
+        deskripsi: "Terbuat dari bahan Cordura nylon, Series Cache adalah tas yang didesain untuk menemani jalan jalan, bersepeda, atau bekerja. Kompartemen utama di dalamnya terdapat sekat Laptop sampai 14 inci.",
+        dimensi: "36cm x 11cm x 30cm (Volume 11 L)",
+        bahan: "Cordura Nylon 1000D Glossy / Polyester WP Lining / Mesh fabric / YKK Zipper",
+        linkShopee: "https://shopee.co.id/peent.up",
+        gambarUtama: [
+            "https://i.imgur.com/040Uq9E.jpg",
+            "https://i.imgur.com/ANonCFm.jpeg",
+            "https://i.imgur.com/92mTTkL.jpeg",
+            "https://i.imgur.com/SC3sZjC.jpeg"
+        ]
+    },
+    {
+        nama: "Peent Adjustable Stabilizer v.2 Strap",
+        harga: "Rp 76.000",
+        deskripsi: "One-side adjustable strap / Quick magnetic fastening (one-hand use) / Secure snap attachment to main strap / Compatible with most sling/crossbody bags. Designed to keep your carry clean, stable, and comfortable",
+        dimensi: "Adjustable length: 25 cm – 70 cm, Front strap length: 10 cm, Back, strap length: 57 cm, Strap width: 2 cm",
+        bahan: "Premium 2cm Nylon Webbing (structured & durable) / Magnetic Buckle / Acetal Hardware / Snap Button (reinforced)",
+        linkShopee: "https://shopee.co.id/Peent.-Adjustable-Stabilizer-v.2-Strap.-Magnetic-Buckle.-Aksesori-Tas-Selempang-Sidepack.-Camera.-Cycling.-i.1492305909.46709938687",
+        gambarUtama: [
+            "https://i.imgur.com/x0nx4D4.png",
+            "https://i.imgur.com/JMuD6SS.png",
+            "https://i.imgur.com/kViydWJ.png",
+            "https://i.imgur.com/oMHZNjr.png"
+        ]
+    }
+];
 
-    <nav class="p-6 flex justify-between items-center bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
-        <h1 class="text-2xl font-bold tracking-tighter text-black uppercase">Peent.</h1>
-        <div class="space-x-6 text-sm font-medium">
-            <a href="https://shopee.co.id/peent.up" target="_blank" class="hover:text-gray-500 text-black">Shopee</a>
+// GANTI ANGKA DI BAWAH INI UNTUK MENAMPILKAN PRODUK:
+// 0 = Peent Cache Sling Bag
+// 1 = Peent Adjustable Stabilizer v.2 Strap
+const produkAktif = daftarProduk[1];
+
+// Logika pembaruan konten otomatis
+document.querySelector('h2').innerText = produkAktif.nama;
+document.querySelector('.text-2xl.font-light').innerText = produkAktif.harga;
+document.querySelector('.pt-2 a').href = produkAktif.linkShopee;
+
+const deskripsiContainer = document.querySelector('.text-gray-600.leading-relaxed');
+deskripsiContainer.innerHTML = `<p>${produkAktif.deskripsi}</p>`;
+
+const detailSpecs = document.querySelectorAll('.space-y-5.pt-8 p');
+detailSpecs[0].innerText = produkAktif.dimensi;
+detailSpecs[1].innerText = produkAktif.bahan;
+
+const sliderContainer = document.getElementById('slider-container');
+sliderContainer.innerHTML = ""; 
+produkAktif.gambarUtama.forEach(src => {
+    sliderContainer.innerHTML += `
+        <div class="swiper-slide">
+            <img src="${src}" class="w-full h-full object-cover">
         </div>
-    </nav>
+    `;
+});
 
-    <header class="max-w-6xl mx-auto px-6 pt-16 pb-8 text-center">
-        <h2 class="text-4xl font-bold mb-4">Our Catalog</h2>
-        <p class="text-gray-500">Koleksi perlengkapan esensial untuk mobilitas Anda.</p>
-    </header>
-
-    <main class="max-w-6xl mx-auto px-6 py-12">
-        <!-- Container untuk daftar produk -->
-        <div id="catalog-container" class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <!-- Produk akan muncul di sini secara otomatis melalui JavaScript -->
+const galleryContainer = document.getElementById('gallery-container');
+galleryContainer.innerHTML = ""; 
+produkAktif.gambarUtama.forEach((src, index) => {
+    galleryContainer.innerHTML += `
+        <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+            <img src="${src}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery ${index + 1}" onclick="openLightbox(${index})">
         </div>
-    </main>
+    `;
+});
 
-    <footer class="py-12 border-t border-gray-100 text-center">
-        <p class="text-xs text-gray-400">&copy; 2026 Peent. All rights reserved.</p>
-    </footer>
+// Sisanya (Swiper & Lightbox) tetap sama seperti sebelumnya.
+var swiper = new Swiper(".mySwiper", { 
+    loop: true, 
+    pagination: { el: ".swiper-pagination", clickable: true }, 
+    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } 
+});
 
-    <script>
-        const daftarProduk = [
-            {
-                nama: "Peent Cache Sling Bag",
-                harga: "Rp 285.000",
-                deskripsi: "Terbuat dari bahan Cordura nylon, Series Cache adalah tas yang didesain untuk menemani jalan-jalan, bersepeda, atau bekerja.",
-                gambar: "https://i.imgur.com/040Uq9E.jpg",
-                linkShopee: "https://shopee.co.id/peent.up"
-            },
-            {
-                nama: "Peent Adjustable Stabilizer v.2 Strap",
-                harga: "Rp 76.000",
-                deskripsi: "Quick magnetic fastening (one-hand use). Designed to keep your carry clean, stable, and comfortable.",
-                gambar: "https://i.imgur.com/x0nx4D4.png",
-                linkShopee: "https://shopee.co.id/Peent.-Adjustable-Stabilizer-v.2-Strap.-Magnetic-Buckle.-Aksesori-Tas-Selempang-Sidepack.-Camera.-Cycling.-i.1492305909.46709938687"
-            }
-            // Tambahkan produk baru di sini dengan format yang sama
-        ];
+let currentIndex = 0;
+const galleryImages = produkAktif.gambarUtama;
 
-        const catalogContainer = document.getElementById('catalog-container');
+function openLightbox(index) {
+    currentIndex = index;
+    document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+    document.getElementById('lightbox').classList.remove('hidden');
+}
 
-        // Fungsi untuk merender semua produk
-        function renderCatalog() {
-            catalogContainer.innerHTML = daftarProduk.map(produk => `
-                <div class="product-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col">
-                    <div class="aspect-square overflow-hidden bg-gray-200">
-                        <img src="${produk.gambar}" class="w-full h-full object-cover" alt="${produk.nama}">
-                    </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <h3 class="text-2xl font-bold mb-2">${produk.nama}</h3>
-                        <p class="text-xl text-gray-600 font-light mb-4">${produk.harga}</p>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">${produk.deskripsi}</p>
-                        <a href="${produk.linkShopee}" target="_blank" 
-                           class="block w-full text-center bg-black text-white py-4 rounded-full font-semibold hover:bg-gray-800 transition-colors shadow-md active:scale-95">
-                            Beli di Shopee
-                        </a>
-                    </div>
-                </div>
-            `).join('');
-        }
+function closeLightbox() { document.getElementById('lightbox').classList.add('hidden'); }
 
-        // Jalankan fungsi saat halaman dimuat
-        renderCatalog();
-    </script>
-
-</body>
-</html>
+function changeImage(direction, event) {
+    if(event) event.stopPropagation();
+    currentIndex += direction;
+    if (currentIndex >= galleryImages.length) currentIndex = 0;
+    else if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+    document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+}
