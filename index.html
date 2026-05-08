@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peent. - Peent Cache Sling Bag</title>
+    <title>Peent. - Catalog</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; }
-        .swiper { width: 100%; height: 100%; border-radius: 1rem; }
-        .swiper-button-next, .swiper-button-prev { color: #000 !important; transform: scale(0.7); }
-        .swiper-pagination-bullet-active { background: #000 !important; }
-        .wa-float { transition: all 0.3s ease; }
-        .wa-float:hover { transform: scale(1.1); filter: brightness(1.1); }
+        .product-card { transition: all 0.3s ease; }
+        .product-card:hover { transform: translateY(-5px); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -22,163 +18,69 @@
     <nav class="p-6 flex justify-between items-center bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
         <h1 class="text-2xl font-bold tracking-tighter text-black uppercase">Peent.</h1>
         <div class="space-x-6 text-sm font-medium">
-            <a href="#gallery" class="hover:text-gray-500 text-black transition-colors">Gallery</a>
+            <a href="https://shopee.co.id/peent.up" target="_blank" class="hover:text-gray-500 text-black">Shopee</a>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-start gap-12">
-        
-        <div class="w-full md:w-1/2 sticky top-24">
-            <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden shadow-sm relative">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper" id="slider-container">
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-        </div>
+    <header class="max-w-6xl mx-auto px-6 pt-16 pb-8 text-center">
+        <h2 class="text-4xl font-bold mb-4">Our Catalog</h2>
+        <p class="text-gray-500">Koleksi perlengkapan esensial untuk mobilitas Anda.</p>
+    </header>
 
-        <div class="w-full md:w-1/2 space-y-8">
-            <div class="space-y-2">
-                <span class="text-xs font-bold uppercase tracking-widest text-gray-400">New Arrival</span>
-                <h2 class="text-4xl md:text-5xl font-bold leading-tight">Peent Cache Sling Bag</h2>
-                <p class="text-2xl font-light text-gray-600">Rp 285.000</p>
-            </div>
-
-            <div class="text-gray-600 leading-relaxed text-sm md:text-base space-y-4">
-                <p>Terbuat dari bahan Cordura nylon, Series Cache adalah tas yang didesain untuk menemani jalan-jalan, bersepeda, atau bekerja. Kompartemen utama di dalamnya terdapat sekat Laptop sampai 14''.</p>
-                <p>Semua yang kamu butuhkan ada di bagian depan: 1 kompartemen untuk Botol / Tumbler dengan pengunci serut, 1 kompartemen tengah jaring dengan resleting, dan 1 kompartemen dengan pengunci snap.</p>
-                <p>Bagian belakang terdapat slot jaring besar untuk barang lain yang perlu diakses dengan cepat, dengan tambahan slot jaring kiri kanan.</p>
-                <p>Strap utama dengan Buckle yang dapat diatur dengan cepat, dan strap tambahan di pinggang untuk menstabilkan posisi tas.</p>
-            </div>
-
-            <div class="pt-2">
-                <a href="https://shopee.co.id/peent.up" target="_blank" class="inline-block w-full md:w-auto text-center bg-black text-white px-12 py-4 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg active:scale-95">
-                    Beli Sekarang di Shopee
-                </a>
-            </div>
-
-            <div class="space-y-5 pt-8 border-t border-gray-200">
-                <div>
-                    <h4 class="text-xs font-bold uppercase text-gray-400 mb-1">Dimensions (P x L x T)</h4>
-                    <p class="text-sm font-medium text-gray-900">36cm x 11cm x 30cm (Volume 11 L)</p>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold uppercase text-gray-400 mb-1">Materials</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Cordura Nylon 1000D Glossy / Polyester WP Lining / Mesh fabric / Acetal Buckle / Acetal Hook / YKK Zipper / YKK Zipper Puller / Nylon Webbing
-                    </p>
-                </div>
-            </div>
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <!-- Container untuk daftar produk -->
+        <div id="catalog-container" class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <!-- Produk akan muncul di sini secara otomatis melalui JavaScript -->
         </div>
     </main>
 
-    <section id="gallery" class="max-w-6xl mx-auto px-6 py-16 border-t border-gray-200">
-        <div class="text-center mb-10">
-            <h3 class="text-3xl md:text-4xl font-bold tracking-tight">Gallery</h3>
-            <p class="text-gray-500 mt-3">Lihat lebih detail produk Peent Cache Sling Bag</p>
-        </div>
-        
-        <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        </div>
-    </section>
-
-    <div id="lightbox" class="fixed inset-0 z-[60] hidden bg-black/95 flex items-center justify-center p-4 transition-opacity duration-300">
-        <button class="absolute top-4 right-6 text-white text-4xl md:text-5xl hover:text-gray-300 transition-colors z-[70]" onclick="closeLightbox()">&times;</button>
-        <button class="absolute left-4 md:left-10 text-white text-4xl md:text-6xl hover:text-gray-400 transition-colors z-[70]" onclick="changeImage(-1, event)">&#10094;</button>
-        <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl relative z-[60]" onclick="event.stopPropagation()">
-        <button class="absolute right-4 md:right-10 text-white text-4xl md:text-6xl hover:text-gray-400 transition-colors z-[70]" onclick="changeImage(1, event)">&#10095;</button>
-    </div>
-
-    <a href="https://wa.me/6285810895334?text=Halo%20Peent,%20saya%20tertarik%20tanya%20tentang%20Cache%20Sling%20Bag" target="_blank" class="wa-float fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50 flex items-center justify-center">
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.48s3.481 5.228 3.481 8.408c0 6.556-5.332 11.888-11.888 11.888-2.003 0-3.96-.503-5.69-1.448l-6.307 1.669zM6.49 19.394l.356.211c1.356.803 2.871 1.226 4.431 1.226 4.692 0 8.51-3.818 8.51-8.51 0-2.273-.884-4.41-2.489-6.015s-3.742-2.489-6.015-2.489c-4.692 0-8.51 3.818-8.51 8.51 0 1.691.494 3.336 1.428 4.773l.232.357-1.079 3.941 4.076-1.078z"/></svg>
-    </a>
-
-    <footer class="py-12 border-t border-gray-100 text-center flex justify-center items-center gap-4">
+    <footer class="py-12 border-t border-gray-100 text-center">
         <p class="text-xs text-gray-400">&copy; 2026 Peent. All rights reserved.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // ==========================================================
-        // 1. DATA SLIDER PRODUK UTAMA (Gambar yang bisa di-geser di atas)
-        // ==========================================================
-        const sliderImages = [
-            "https://i.imgur.com/040Uq9E.jpg",
-            "https://i.imgur.com/ANonCFm.jpeg",
-            "https://i.imgur.com/92mTTkL.jpeg",
-            "https://i.imgur.com/SC3sZjC.jpeg",
-            "https://i.imgur.com/wPJFWIf.jpeg",
-            "https://i.imgur.com/dq4kEB0.jpeg",
-            "https://i.imgur.com/udJ4O47.jpeg",
-            "https://i.imgur.com/e0rws9e.jpeg",
-            "https://i.imgur.com/KpL5XXT.jpeg",
-            "https://i.imgur.com/o8mmH8l.jpeg"
+        const daftarProduk = [
+            {
+                nama: "Peent Cache Sling Bag",
+                harga: "Rp 285.000",
+                deskripsi: "Terbuat dari bahan Cordura nylon, Series Cache adalah tas yang didesain untuk menemani jalan-jalan, bersepeda, atau bekerja.",
+                gambar: "https://i.imgur.com/040Uq9E.jpg",
+                linkShopee: "https://shopee.co.id/peent.up"
+            },
+            {
+                nama: "Peent Adjustable Stabilizer v.2 Strap",
+                harga: "Rp 76.000",
+                deskripsi: "Quick magnetic fastening (one-hand use). Designed to keep your carry clean, stable, and comfortable.",
+                gambar: "https://i.imgur.com/x0nx4D4.png",
+                linkShopee: "https://shopee.co.id/Peent.-Adjustable-Stabilizer-v.2-Strap.-Magnetic-Buckle.-Aksesori-Tas-Selempang-Sidepack.-Camera.-Cycling.-i.1492305909.46709938687"
+            }
+            // Tambahkan produk baru di sini dengan format yang sama
         ];
 
-        // Generate Slider Otomatis
-        const sliderContainer = document.getElementById('slider-container');
-        sliderImages.forEach(src => {
-            sliderContainer.innerHTML += `
-                <div class="swiper-slide">
-                    <img src="${src}" class="w-full h-full object-cover">
+        const catalogContainer = document.getElementById('catalog-container');
+
+        // Fungsi untuk merender semua produk
+        function renderCatalog() {
+            catalogContainer.innerHTML = daftarProduk.map(produk => `
+                <div class="product-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col">
+                    <div class="aspect-square overflow-hidden bg-gray-200">
+                        <img src="${produk.gambar}" class="w-full h-full object-cover" alt="${produk.nama}">
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold mb-2">${produk.nama}</h3>
+                        <p class="text-xl text-gray-600 font-light mb-4">${produk.harga}</p>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">${produk.deskripsi}</p>
+                        <a href="${produk.linkShopee}" target="_blank" 
+                           class="block w-full text-center bg-black text-white py-4 rounded-full font-semibold hover:bg-gray-800 transition-colors shadow-md active:scale-95">
+                            Beli di Shopee
+                        </a>
+                    </div>
                 </div>
-            `;
-        });
-
-        // Inisialisasi Swiper (Harus dipanggil SETELAH gambar digenerate)
-        var swiper = new Swiper(".mySwiper", { 
-            loop: true, 
-            pagination: { el: ".swiper-pagination", clickable: true }, 
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } 
-        });
-
-        // ==========================================================
-        // 2. DATA FOTO GALLERY (Di bagian bawah)
-        // ==========================================================
-        const galleryImages = [
-            "https://i.imgur.com/040Uq9E.jpg",
-            "https://i.imgur.com/ANonCFm.jpeg",
-            "https://i.imgur.com/92mTTkL.jpeg",
-            "https://i.imgur.com/SC3sZjC.jpeg",
-            "https://i.imgur.com/fBYRB98.jpeg",
-            "https://i.imgur.com/o2xN0b0.jpeg",
-            "https://i.imgur.com/2QmMOWH.jpeg",
-            "https://i.imgur.com/pzzyOMu.jpeg",
-            "https://i.imgur.com/gNokPuR.png",
-            "https://i.imgur.com/wPJFWIf.jpeg"
-        ];
-
-        // Generate Gallery Otomatis
-        const galleryContainer = document.getElementById('gallery-container');
-        galleryImages.forEach((src, index) => {
-            galleryContainer.innerHTML += `
-                <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-                    <img src="${src}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery ${index + 1}" onclick="openLightbox(${index})">
-                </div>
-            `;
-        });
-
-        // Script Lightbox Gallery
-        let currentIndex = 0;
-        function openLightbox(index) {
-            currentIndex = index;
-            document.getElementById('lightbox-img').src = galleryImages[currentIndex];
-            document.getElementById('lightbox').classList.remove('hidden');
+            `).join('');
         }
-        function closeLightbox() { document.getElementById('lightbox').classList.add('hidden'); }
-        function changeImage(direction, event) {
-            if(event) event.stopPropagation();
-            currentIndex += direction;
-            if (currentIndex >= galleryImages.length) currentIndex = 0;
-            else if (currentIndex < 0) currentIndex = galleryImages.length - 1;
-            document.getElementById('lightbox-img').src = galleryImages[currentIndex];
-        }
-        document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target.id === 'lightbox') closeLightbox();
-        });
+
+        // Jalankan fungsi saat halaman dimuat
+        renderCatalog();
     </script>
 
 </body>
