@@ -1,93 +1,170 @@
-const daftarProduk = [
-    {
-        nama: "Peent Cache Sling Bag",
-        harga: "Rp 285.000",
-        deskripsi: "Terbuat dari bahan Cordura nylon, Series Cache adalah tas yang didesain untuk menemani jalan jalan, bersepeda, atau bekerja. Kompartemen utama di dalamnya terdapat sekat Laptop sampai 14 inci.",
-        dimensi: "36cm x 11cm x 30cm (Volume 11 L)",
-        bahan: "Cordura Nylon 1000D Glossy / Polyester WP Lining / Mesh fabric / YKK Zipper",
-        linkShopee: "https://shopee.co.id/peent.up",
-        gambarUtama: [
-            "https://i.imgur.com/040Uq9E.jpg",
-            "https://i.imgur.com/ANonCFm.jpeg",
-            "https://i.imgur.com/92mTTkL.jpeg",
-            "https://i.imgur.com/SC3sZjC.jpeg"
-        ]
-    },
-    {
-        nama: "Peent Adjustable Stabilizer v.2 Strap",
-        harga: "Rp 76.000",
-        deskripsi: "One-side adjustable strap / Quick magnetic fastening (one-hand use) / Secure snap attachment to main strap / Compatible with most sling/crossbody bags. Designed to keep your carry clean, stable, and comfortable",
-        dimensi: "Adjustable length: 25 cm – 70 cm, Front strap length: 10 cm, Back, strap length: 57 cm, Strap width: 2 cm",
-        bahan: "Premium 2cm Nylon Webbing (structured & durable) / Magnetic Buckle / Acetal Hardware / Snap Button (reinforced)",
-        linkShopee: "https://shopee.co.id/Peent.-Adjustable-Stabilizer-v.2-Strap.-Magnetic-Buckle.-Aksesori-Tas-Selempang-Sidepack.-Camera.-Cycling.-i.1492305909.46709938687",
-        gambarUtama: [
-            "https://i.imgur.com/x0nx4D4.png",
-            "https://i.imgur.com/JMuD6SS.png",
-            "https://i.imgur.com/kViydWJ.png",
-            "https://i.imgur.com/oMHZNjr.png"
-        ]
-    }
-];
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peent. - Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .swiper { width: 100%; height: 100%; border-radius: 1rem; }
+        .swiper-button-next, .swiper-button-prev { color: #000 !important; transform: scale(0.7); }
+        .swiper-pagination-bullet-active { background: #000 !important; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
 
-// GANTI ANGKA DI BAWAH INI UNTUK MENAMPILKAN PRODUK:
-// 0 = Peent Cache Sling Bag
-// 1 = Peent Adjustable Stabilizer v.2 Strap
-const produkAktif = daftarProduk[1];
-
-// Logika pembaruan konten otomatis
-document.querySelector('h2').innerText = produkAktif.nama;
-document.querySelector('.text-2xl.font-light').innerText = produkAktif.harga;
-document.querySelector('.pt-2 a').href = produkAktif.linkShopee;
-
-const deskripsiContainer = document.querySelector('.text-gray-600.leading-relaxed');
-deskripsiContainer.innerHTML = `<p>${produkAktif.deskripsi}</p>`;
-
-const detailSpecs = document.querySelectorAll('.space-y-5.pt-8 p');
-detailSpecs[0].innerText = produkAktif.dimensi;
-detailSpecs[1].innerText = produkAktif.bahan;
-
-const sliderContainer = document.getElementById('slider-container');
-sliderContainer.innerHTML = ""; 
-produkAktif.gambarUtama.forEach(src => {
-    sliderContainer.innerHTML += `
-        <div class="swiper-slide">
-            <img src="${src}" class="w-full h-full object-cover">
+    <nav class="p-6 flex justify-between items-center bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
+        <h1 class="text-2xl font-bold tracking-tighter text-black uppercase">Peent.</h1>
+        <div class="space-x-6 text-sm font-medium">
+            <a href="#gallery" class="hover:text-gray-500 text-black">Gallery</a>
         </div>
-    `;
-});
+    </nav>
 
-const galleryContainer = document.getElementById('gallery-container');
-galleryContainer.innerHTML = ""; 
-produkAktif.gambarUtama.forEach((src, index) => {
-    galleryContainer.innerHTML += `
-        <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
-            <img src="${src}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" alt="Gallery ${index + 1}" onclick="openLightbox(${index})">
+    <main class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-12">
+        <!-- Bagian Slider -->
+        <div class="w-full md:w-1/2 sticky top-24">
+            <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden relative">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper" id="slider-container"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
         </div>
-    `;
-});
 
-// Sisanya (Swiper & Lightbox) tetap sama seperti sebelumnya.
-var swiper = new Swiper(".mySwiper", { 
-    loop: true, 
-    pagination: { el: ".swiper-pagination", clickable: true }, 
-    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } 
-});
+        <!-- Bagian Info Produk -->
+        <div class="w-full md:w-1/2 space-y-8">
+            <div class="space-y-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Product Detail</span>
+                <h2 class="text-4xl font-bold leading-tight"></h2>
+                <p class="text-2xl font-light text-gray-600"></p>
+            </div>
 
-let currentIndex = 0;
-const galleryImages = produkAktif.gambarUtama;
+            <div class="text-gray-600 leading-relaxed text-sm md:text-base space-y-4" id="deskripsi-container"></div>
 
-function openLightbox(index) {
-    currentIndex = index;
-    document.getElementById('lightbox-img').src = galleryImages[currentIndex];
-    document.getElementById('lightbox').classList.remove('hidden');
-}
+            <div class="pt-2">
+                <a href="#" target="_blank" class="inline-block w-full md:w-auto text-center bg-black text-white px-12 py-4 rounded-full font-semibold hover:bg-gray-800 transition-all shadow-lg active:scale-95">
+                    Beli Sekarang di Shopee
+                </a>
+            </div>
 
-function closeLightbox() { document.getElementById('lightbox').classList.add('hidden'); }
+            <div class="space-y-5 pt-8 border-t border-gray-200">
+                <div>
+                    <h4 class="text-xs font-bold uppercase text-gray-400 mb-1">Dimensions</h4>
+                    <p class="text-sm font-medium text-gray-900"></p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase text-gray-400 mb-1">Materials</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed"></p>
+                </div>
+            </div>
+        </div>
+    </main>
 
-function changeImage(direction, event) {
-    if(event) event.stopPropagation();
-    currentIndex += direction;
-    if (currentIndex >= galleryImages.length) currentIndex = 0;
-    else if (currentIndex < 0) currentIndex = galleryImages.length - 1;
-    document.getElementById('lightbox-img').src = galleryImages[currentIndex];
-}
+    <section id="gallery" class="max-w-6xl mx-auto px-6 py-16 border-t border-gray-200">
+        <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[60] hidden bg-black/95 flex items-center justify-center p-4">
+        <button class="absolute top-4 right-6 text-white text-5xl z-[70]" onclick="closeLightbox()">&times;</button>
+        <button class="absolute left-4 text-white text-6xl z-[70]" onclick="changeImage(-1, event)">&#10094;</button>
+        <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] object-contain rounded-lg">
+        <button class="absolute right-4 text-white text-6xl z-[70]" onclick="changeImage(1, event)">&#10095;</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const daftarProduk = [
+            {
+                nama: "Peent Cache Sling Bag",
+                harga: "Rp 285.000",
+                deskripsi: "Terbuat dari bahan Cordura nylon, Series Cache adalah tas yang didesain untuk menemani jalan jalan, bersepeda, atau bekerja. Kompartemen utama di dalamnya terdapat sekat Laptop sampai 14 inci.",
+                dimensi: "36cm x 11cm x 30cm (Volume 11 L)",
+                bahan: "Cordura Nylon 1000D Glossy / Polyester WP Lining / Mesh fabric / YKK Zipper",
+                linkShopee: "https://shopee.co.id/peent.up",
+                gambarUtama: [
+                    "https://i.imgur.com/040Uq9E.jpg",
+                    "https://i.imgur.com/ANonCFm.jpeg",
+                    "https://i.imgur.com/92mTTkL.jpeg",
+                    "https://i.imgur.com/SC3sZjC.jpeg"
+                ]
+            },
+            {
+                nama: "Peent Adjustable Stabilizer v.2 Strap",
+                harga: "Rp 76.000",
+                deskripsi: "One-side adjustable strap / Quick magnetic fastening (one-hand use) / Secure snap attachment to main strap / Compatible with most sling/crossbody bags. Designed to keep your carry clean, stable, and comfortable",
+                dimensi: "Adjustable length: 25 cm – 70 cm, Front strap length: 10 cm, Back, strap length: 57 cm, Strap width: 2 cm",
+                bahan: "Premium 2cm Nylon Webbing (structured & durable) / Magnetic Buckle / Acetal Hardware / Snap Button (reinforced)",
+                linkShopee: "https://shopee.co.id/Peent.-Adjustable-Stabilizer-v.2-Strap.-Magnetic-Buckle.-Aksesori-Tas-Selempang-Sidepack.-Camera.-Cycling.-i.1492305909.46709938687",
+                gambarUtama: [
+                    "https://i.imgur.com/x0nx4D4.png",
+                    "https://i.imgur.com/JMuD6SS.png",
+                    "https://i.imgur.com/kViydWJ.png",
+                    "https://i.imgur.com/oMHZNjr.png"
+                ]
+            }
+        ];
+
+        // GANTI INDEKS DI SINI: 0 untuk Tas, 1 untuk Strap
+        const produkAktif = daftarProduk[1];
+
+        // Render Data ke HTML
+        document.querySelector('h2').innerText = produkAktif.nama;
+        document.querySelector('.text-2xl.font-light').innerText = produkAktif.harga;
+        document.querySelector('.pt-2 a').href = produkAktif.linkShopee;
+        document.getElementById('deskripsi-container').innerHTML = `<p>${produkAktif.deskripsi}</p>`;
+        
+        const detailSpecs = document.querySelectorAll('.space-y-5.pt-8 p');
+        detailSpecs[0].innerText = produkAktif.dimensi;
+        detailSpecs[1].innerText = produkAktif.bahan;
+
+        // Render Slider
+        const sliderContainer = document.getElementById('slider-container');
+        produkAktif.gambarUtama.forEach(src => {
+            sliderContainer.innerHTML += `<div class="swiper-slide"><img src="${src}" class="w-full h-full object-cover"></div>`;
+        });
+
+        // Render Gallery
+        const galleryContainer = document.getElementById('gallery-container');
+        produkAktif.gambarUtama.forEach((src, index) => {
+            galleryContainer.innerHTML += `
+                <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm">
+                    <img src="${src}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500 cursor-pointer" onclick="openLightbox(${index})">
+                </div>`;
+        });
+
+        // Init Swiper
+        var swiper = new Swiper(".mySwiper", { 
+            loop: true, 
+            pagination: { el: ".swiper-pagination", clickable: true }, 
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" } 
+        });
+
+        // Lightbox Logic
+        let currentIndex = 0;
+        const galleryImages = produkAktif.gambarUtama;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+
+        function closeLightbox() { document.getElementById('lightbox').classList.add('hidden'); }
+
+        function changeImage(direction, event) {
+            if(event) event.stopPropagation();
+            currentIndex += direction;
+            if (currentIndex >= galleryImages.length) currentIndex = 0;
+            else if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+            document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+        }
+    </script>
+</body>
+</html>
