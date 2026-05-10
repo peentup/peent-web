@@ -13,6 +13,8 @@
         .swiper { width: 100%; height: 100%; border-radius: 1rem; }
         .swiper-button-next, .swiper-button-prev { color: #000 !important; transform: scale(0.7); }
         .swiper-pagination-bullet-active { background: #000 !important; }
+        .wa-float { transition: all 0.3s ease; }
+        .wa-float:hover { transform: scale(1.1); filter: brightness(1.1); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -24,10 +26,15 @@
         </div>
     </nav>
 
-    <!-- Container Utama untuk menampung semua produk -->
     <div id="app-container"></div>
 
-    <!-- Lightbox (Hanya satu untuk semua produk) -->
+    <!-- Tombol WhatsApp Floating -->
+    <a href="https://wa.me/6285810895334?text=Halo%20Peent,%20saya%20ingin%20tanya%20tentang%20produk" target="_blank" class="wa-float fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl z-50 flex items-center justify-center">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.48s3.481 5.228 3.481 8.408c0 6.556-5.332 11.888-11.888 11.888-2.003 0-3.96-.503-5.69-1.448l-6.307 1.669zM6.49 19.394l.356.211c1.356.803 2.871 1.226 4.431 1.226 4.692 0 8.51-3.818 8.51-8.51 0-2.273-.884-4.41-2.489-6.015s-3.742-2.489-6.015-2.489c-4.692 0-8.51 3.818-8.51 8.51 0 1.691.494 3.336 1.428 4.773l.232.357-1.079 3.941 4.076-1.078z"/>
+        </svg>
+    </a>
+
     <div id="lightbox" class="fixed inset-0 z-[60] hidden bg-black/95 flex items-center justify-center p-4" onclick="closeLightbox()">
         <button class="absolute top-4 right-6 text-white text-5xl">&times;</button>
         <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] object-contain rounded-lg">
@@ -40,55 +47,54 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         const daftarProduk = [
-    {
-        nama: "Peent Cache Sling Bag",
-        harga: "Rp 137.000",
-        deskripsi: "Terbuat dari bahan Cordura nylon, Series Cache adalah tas yang didesain untuk menemani jalan jalan, bersepeda, atau bekerja. Kompartemen utama di dalamnya terdapat sekat Laptop sampai 14 inci.",
-        dimensi: "36cm x 11cm x 30cm (Volume 11 L)",
-        bahan: "Cordura Nylon 1000D Glossy / Polyester WP Lining / Mesh fabric / YKK Zipper",
-        linkShopee: "https://shopee.co.id/Peent.-Cache-Messenger-Bag-Sling-Bag-Shoulder-Bag-Tas-Selempang-i.1492305909.27080442765?extraParams=%7B%22display_model_id%22%3A223979303114%2C%22model_selection_logic%22%3A3%7D",
-        gambar: [
-            "https://i.imgur.com/040Uq9E.jpg",
-            "https://i.imgur.com/ANonCFm.jpeg",
-            "https://i.imgur.com/92mTTkL.jpeg",
-            "https://i.imgur.com/SC3sZjC.jpeg"
-        ]
-    },
-    {
-        nama: "Peent Adjustable Stabilizer v.2 Strap",
-        harga: "Rp 76.000",
-        deskripsi: "One-side adjustable strap / Quick magnetic fastening (one-hand use) / Secure snap attachment to main strap / Compatible with most sling/crossbody bags. Designed to keep your carry clean, stable, and comfortable",
-        dimensi: "Adjustable length: 25 cm – 70 cm, Front strap length: 10 cm, Back, strap length: 57 cm, Strap width: 2 cm",
-        bahan: "Premium 2cm Nylon Webbing (structured & durable) / Magnetic Buckle / Acetal Hardware / Snap Button (reinforced)",
-        linkShopee: "https://shopee.co.id/Peent.-Adjustable-Stabilizer-v.2-Strap.-Magnetic-Buckle.-Aksesori-Tas-Selempang-Sidepack.-Camera.-Cycling.-i.1492305909.46709938687",
-        gambar: [
-            "https://i.imgur.com/x0nx4D4.png",
-            "https://i.imgur.com/JMuD6SS.png",
-            "https://i.imgur.com/kViydWJ.png",
-            "https://i.imgur.com/oMHZNjr.png"
-        ]
-    },
-    {
-        nama: "PEENT Scrunchie Satin",
-        harga: "Rp 19.000",
-        deskripsi: "Scrunchie dari PEENT dibuat menggunakan bahan Satin Charmeuse premium yang dikenal lebih lembut, flowy, dan glossy dibanding satin biasa. Dirancang untuk memberikan kenyamanan maksimal tanpa merusak rambut, cocok untuk penggunaan harian hingga styling yang lebih elevated",
-        dimensi: "Scrunchie width (before stretch): 7.5 cm, Expandable up to: 21 cm",
-        bahan: "Premium Satin Charmeuse (smooth, glossy, lightweight), Elastic band (durable & flexible)",
-        linkShopee: "https://shopee.co.id/PEENT.-Scrunchie-Satin-Charmeuse-Premium-Medium-Size-Ikat-Rambut-Halus.-Anti-Kusut.-Tidak-Merusak-Rambut-(7.5%E2%80%9321-cm)-i.1492305909.49909990045",
-        gambar: [
-            "https://i.imgur.com/jbfwaUB.png",
-            "https://i.imgur.com/kWBDXqT.png",
-            "https://i.imgur.com/8FjYO4K.png",
-            "https://i.imgur.com/9UYR0L4.png",
-            "https://i.imgur.com/EvxHypx.png",
-            "https://i.imgur.com/gElupLz.png"
-        ]
-    }
-];
+            {
+                nama: "Peent Cache Sling Bag",
+                harga: "Rp 137.000",
+                deskripsi: "Terbuat dari bahan Cordura nylon, Series Cache adalah tas yang didesain untuk menemani jalan jalan, bersepeda, atau bekerja. Kompartemen utama di dalamnya terdapat sekat Laptop sampai 14 inci.",
+                dimensi: "36cm x 11cm x 30cm (Volume 11 L)",
+                bahan: "Cordura Nylon 1000D Glossy / Polyester WP Lining / Mesh fabric / YKK Zipper",
+                linkShopee: "https://shopee.co.id/Peent.-Cache-Messenger-Bag-Sling-Bag-Shoulder-Bag-Tas-Selempang-i.1492305909.27080442765",
+                gambar: [
+                    "https://i.imgur.com/040Uq9E.jpg",
+                    "https://i.imgur.com/ANonCFm.jpeg",
+                    "https://i.imgur.com/92mTTkL.jpeg",
+                    "https://i.imgur.com/SC3sZjC.jpeg"
+                ]
+            },
+            {
+                nama: "Peent Adjustable Stabilizer v.2 Strap",
+                harga: "Rp 76.000",
+                deskripsi: "One-side adjustable strap / Quick magnetic fastening (one-hand use) / Secure snap attachment to main strap / Compatible with most sling/crossbody bags. Designed to keep your carry clean, stable, and comfortable",
+                dimensi: "Adjustable length: 25 cm – 70 cm, Front strap length: 10 cm, Back, strap length: 57 cm, Strap width: 2 cm",
+                bahan: "Premium 2cm Nylon Webbing (structured & durable) / Magnetic Buckle / Acetal Hardware / Snap Button (reinforced)",
+                linkShopee: "https://shopee.co.id/Peent.-Adjustable-Stabilizer-v.2-Strap.-Magnetic-Buckle.-Aksesori-Tas-Selempang-Sidepack.-Camera.-Cycling.-i.1492305909.46709938687",
+                gambar: [
+                    "https://i.imgur.com/x0nx4D4.png",
+                    "https://i.imgur.com/JMuD6SS.png",
+                    "https://i.imgur.com/kViydWJ.png",
+                    "https://i.imgur.com/oMHZNjr.png"
+                ]
+            },
+            {
+                nama: "PEENT Scrunchie Satin",
+                harga: "Rp 19.000",
+                deskripsi: "Scrunchie dari PEENT dibuat menggunakan bahan Satin Charmeuse premium yang dikenal lebih lembut, flowy, dan glossy dibanding satin biasa. Dirancang untuk memberikan kenyamanan maksimal tanpa merusak rambut.",
+                dimensi: "Scrunchie width (before stretch): 7.5 cm, Expandable up to: 21 cm",
+                bahan: "Premium Satin Charmeuse (smooth, glossy, lightweight), Elastic band (durable & flexible)",
+                linkShopee: "https://shopee.co.id/PEENT.-Scrunchie-Satin-Charmeuse-Premium-Medium-Size-Ikat-Rambut-Halus.-Anti-Kusut.-Tidak-Merusak-Rambut-(7.5%E2%80%9321-cm)-i.1492305909.49909990045",
+                gambar: [
+                    "https://i.imgur.com/jbfwaUB.png",
+                    "https://i.imgur.com/kWBDXqT.png",
+                    "https://i.imgur.com/8FjYO4K.png",
+                    "https://i.imgur.com/9UYR0L4.png",
+                    "https://i.imgur.com/EvxHypx.png",
+                    "https://i.imgur.com/gElupLz.png"
+                ]
+            }
+        ];
 
         function renderProduk() {
             const container = document.getElementById('app-container');
-            
             container.innerHTML = daftarProduk.map((produk, idx) => `
                 <main class="max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-start gap-12 border-b border-gray-200">
                     <div class="w-full md:w-1/2">
@@ -126,7 +132,6 @@
                 </main>
             `).join('');
 
-            // Inisialisasi semua swiper
             daftarProduk.forEach((_, idx) => {
                 new Swiper(`.mySwiper-${idx}`, {
                     loop: true,
